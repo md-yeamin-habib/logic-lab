@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+
+    <div class="logo">LOGIC LAB</div>
+
+    <div class="gate-selector">
+        <select id="gateSelect">
+            <option value="AND">AND</option>
+            <option value="OR">OR</option>
+            <option value="NOT">NOT</option>
+            <option value="NAND">NAND</option>
+            <option value="NOR">NOR</option>
+            <option value="XOR">XOR</option>
+            <option value="XNOR">XNOR</option>
+            <option value="XOR3">3-INPUT XOR</option>
+            <option value="DECODER3">3:8 DECODER</option>
+            <option value="MUX4">4:1 MUX</option>
+        </select>
+    </div>
+
+</header>
+
+
+<main class="lab">
+
+    <div class="circuit">
+
+        <button class="logic-switch switch-one" id="switch1"><span>OFF</span></button>
+
+        <button class="logic-switch switch-two" id="switch2"><span>OFF</span></button>
+
+        <button class="logic-switch switch-three" id="switch3"><span>OFF</span></button>
+
+        <button class="logic-switch switch-four" id="switch4"><span>OFF</span></button>
+
+        <button class="logic-switch switch-five" id="switch5"><span>OFF</span></button>
+
+        <button class="logic-switch switch-six" id="switch6"><span>OFF</span></button>
+
+        <svg
+            id="circuitSvg"
+            class="circuit-svg"
+            viewBox="0 0 1400 600"
+            preserveAspectRatio="xMidYMid meet"
+        >
+
+            <defs>
+
+                <filter
+                    id="bulbGlow"
+                    x="-300%"
+                    y="-300%"
+                    width="600%"
+                    height="600%"
+                >
+
+                    <feGaussianBlur
+                        stdDeviation="10"
+                        result="blur"
+                    />
+
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+
+                </filter>
+
+
+                <radialGradient id="bulbGradient">
+
+                    <stop offset="0%" stop-color="#ffffff"/>
+
+                    <stop offset="25%" stop-color="#b8ffd0"/>
+
+                    <stop offset="60%" stop-color="#28e96b"/>
+
+                    <stop offset="100%" stop-color="#0b6b30"/>
+
+                </radialGradient>
+
+            </defs>
+
+            <path id="inputWire1" class="wire"/>
+
+            <path id="inputWire2" class="wire"/>
+
+            <path id="inputWire3" class="wire"/>
+
+            <path id="inputWire4" class="wire"/>
+
+            <path id="inputWire5" class="wire"/>
+
+            <path id="inputWire6" class="wire"/>
+
+            <path id="outputWire" class="wire"/>
+
+            <g id="gateGroup">
+
+                <path id="gateShape" class="gate-shape"/>
+
+                <path id="gateExtra" class="gate-extra"/>
+
+                <circle id="gateBubble" class="gate-bubble"/>
+
+            </g>
+
+            <g id="singleOutput">
+
+                <circle
+                    id="bulbOuter"
+                    class="bulb-outer"
+                    cx="1275"
+                    cy="300"
+                    r="28"
+                />
+
+                <circle
+                    id="bulb"
+                    class="bulb"
+                    cx="1275"
+                    cy="300"
+                    r="16"
+                />
+
+            </g>
+
+            <g id="decoderOutputs">
+
+                <g class="decoder-output" id="decoderOutput0">
+
+                    <line id="decoderWire0" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter0"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb0"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel0" class="decoder-label">Y0</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput1">
+
+                    <line id="decoderWire1" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter1"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb1"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel1" class="decoder-label">Y1</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput2">
+
+                    <line id="decoderWire2" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter2"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb2"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel2" class="decoder-label">Y2</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput3">
+
+                    <line id="decoderWire3" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter3"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb3"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel3" class="decoder-label">Y3</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput4">
+
+                    <line id="decoderWire4" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter4"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb4"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel4" class="decoder-label">Y4</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput5">
+
+                    <line id="decoderWire5" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter5"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb5"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel5" class="decoder-label">Y5</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput6">
+
+                    <line id="decoderWire6" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter6"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb6"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel6" class="decoder-label">Y6</text>
+
+                </g>
+
+                <g class="decoder-output" id="decoderOutput7">
+
+                    <line id="decoderWire7" class="wire"/>
+
+                    <circle
+                        id="decoderBulbOuter7"
+                        class="bulb-outer decoder-bulb-outer"
+                        r="20"
+                    />
+
+                    <circle
+                        id="decoderBulb7"
+                        class="bulb decoder-bulb"
+                        r="11"
+                    />
+
+                    <text id="decoderLabel7" class="decoder-label">Y7</text>
+
+                </g>
+
+            </g>
+
+
+        </svg>
+
+    </div>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
