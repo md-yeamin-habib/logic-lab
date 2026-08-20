@@ -155,8 +155,8 @@ function updateCurrentSwitchLabels() {
 
         default:
 
-            updateSwitchLabel(0, "INPUT 1");
-            updateSwitchLabel(1, "INPUT 2");
+            updateSwitchLabel(0, "A");
+            updateSwitchLabel(1, "B");
 
             break;
     }
